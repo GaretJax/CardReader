@@ -5,4 +5,4 @@ A simple jQuery based driver to detect and read the input of a magnetic stripe
 card reader or similar device identified by the OS as a Human Interface Device.
 
 For further information see the blog post at:
-http://garetjax.info/blog/articles/2010/01/magnetic-card-jquery/
+http://garetjax.info/articles/2010/01/magnetic-card-jquery/
