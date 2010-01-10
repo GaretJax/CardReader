@@ -1,0 +1,5 @@
+Card Reader
+===========
+
+A simple jQuery based driver to detect and read the input of a magnetic stripe
+card reader or similar device identified by the OS as a Human Interface Device.

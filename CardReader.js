@@ -1,3 +1,11 @@
+/**
+ * jQuery based magnetic stripe card reader "driver" to be used in web
+ * applications.
+ *
+ * Copyright @ 2009-2010 Jonathan Stoppani (http://garetjax.info/)
+ * Licensed under the MIT license (see LICENSE for details)
+ */
+
 var CardReader = function (error_start, track_start, track_end, timeout) {
 	this.error_start = error_start || "é";
 	this.track_start = track_start || "%";
