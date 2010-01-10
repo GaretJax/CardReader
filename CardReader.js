@@ -65,14 +65,9 @@ CardReader.prototype = {
 		}
 	},
 	
-	readingTimeout: function () {
-		this.started = false;
-		this.finished = false;
-		this.isError = false;
-		this.input = "";
-	},
-	
 	readObserver: function (e) {
+		var ob = this;
+		
 		if (!this.started && (e.which === this.track_start || e.which === this.error_start)) {
 			e.stopImmediatePropagation();
 			e.preventDefault();
@@ -80,7 +75,12 @@ CardReader.prototype = {
 			this.started = true;
 			this.isError = e.which === this.error_start;
 		
-			this.timer = setTimeout(this.readingTimeout, this.timeout);
+			this.timer = setTimeout(function () {
+				ob.started = false;
+				ob.finished = false;
+				ob.isError = false;
+				ob.input = "";
+			}, this.timeout);
 		} else if (this.started && e.which === this.track_end) {
 			e.stopImmediatePropagation();
 			e.preventDefault();
@@ -88,7 +88,12 @@ CardReader.prototype = {
 			this.finished = true;
 		
 			clearTimeout(this.timer);
-			this.timer = setTimeout(this.readingTimeout, this.timeout);
+			this.timer = setTimeout(function () {
+				ob.started = false;
+				ob.finished = false;
+				ob.isError = false;
+				ob.input = "";
+			}, this.timeout);
 		} else if (this.started && this.finished && e.which === 13) {
 			e.stopImmediatePropagation();
 			e.preventDefault();
@@ -109,7 +114,12 @@ CardReader.prototype = {
 			this.input += String.fromCharCode(e.which);
 		
 			clearTimeout(this.timer);
-			this.timer = setTimeout(this.readingTimeout, this.timeout);
+			this.timer = setTimeout(function () {
+				ob.started = false;
+				ob.finished = false;
+				ob.isError = false;
+				ob.input = "";
+			}, this.timeout);
 		}
 	},
 	
@@ -125,11 +135,11 @@ CardReader.prototype = {
 		this.validators.push(validator);
 	},
 	
-	read: function (callback) {
+	cardRead: function (callback) {
 		this.callbacks.push(callback);
 	},
 	
-	error: function (errback) {
+	cardError: function (errback) {
 		this.errbacks.push(errback);
 	},
 }
