@@ -47,7 +47,7 @@ CardReader.prototype = {
 			}
 		}
 	
-		reader = this;
+		var reader = this;
 	
 		this.isDispatching = setTimeout(function () {
 			console.log("Error timeout cleared");
